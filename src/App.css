@@ -42,13 +42,35 @@
   grid-template-rows: repeat(3, 1fr);
   width: auto;
   max-width: 100%;
+  border: 1px solid #000;
 }
 
 .PannelItem {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #000;
+}
 
+.InputBox {
+  aspect-ratio: 1 / 1;
+  border: 1px solid gray;
+}
+
+.SudokuInput {
+  background: none;
+  border: none;
+  outline: none;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: inherit;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 @keyframes App-logo-spin {
