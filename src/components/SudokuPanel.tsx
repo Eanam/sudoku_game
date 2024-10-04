@@ -2,17 +2,21 @@ import { TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { useState } from "react";
 
 interface SudokuPanelProps {
-    className?: string
+    className?: string,
+    array: number[][],
+    onCellChange: (row: number, col: number, value: number) => void,
 }
 
 function SudokuPanel(props: SudokuPanelProps) {
 
-    const [items, setItems] = useState([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    if (props.array.length !== 3 || props.array.some(row => row.length !== 3)) {
+        throw new Error("Values must be a 3x3 array");
+    }
+
+
 
     const handleInputChange = (rowIndex: number, itemIndex: number, value: number) => {
-        const newItems = [...items];
-        newItems[rowIndex][itemIndex] = value;
-        setItems(newItems);
+        props.onCellChange(rowIndex, itemIndex, value)
     }
 
     return (
@@ -20,7 +24,7 @@ function SudokuPanel(props: SudokuPanelProps) {
             <TableContainer>
                 <TableBody>
                     {
-                        items.map((row, rowIndex) => (
+                        props.array.map((row, rowIndex) => (
                             <TableRow>
                                 {
                                     row.map((item, itemIndex) => (
