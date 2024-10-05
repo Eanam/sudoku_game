@@ -3,24 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import SudokuPanel from './components/SudokuPanel';
 import { Button } from '@mui/material';
+import { createInitialSudokuData } from './utils/SudokuUtils';
 
 function App() {
 
   const [sudokuState, setSudokuState] = React.useState(() => {
-    return Array.from({ length: 3 }, () =>
-      Array.from({ length: 3 }, () =>
-        Array.from({ length: 3 }, () =>
-          Array.from({ length: 3 }, () => {
-            const modifiable = Math.random() < 0.5
-            const result = {
-              modifiable: modifiable,
-              value: modifiable ? 0 : Math.floor(Math.random() * 10)
-            }
-            return result
-          })
-        )
-      )
-    );
+    return createInitialSudokuData()
   });
 
   const handleCellChange = (rowIndex: number, colIndex: number, cellRowIndex: number, cellColIndex: number, newValue: number) => {
@@ -29,6 +17,10 @@ function App() {
       newState[rowIndex][colIndex][cellRowIndex][cellColIndex].value = newValue;
       return newState;
     });
+  }
+
+  const handRefresh = () => {
+    setSudokuState(createInitialSudokuData())
   }
 
   return (
@@ -50,7 +42,9 @@ function App() {
         </div>
         <div style={{ marginTop: '20px' }}></div>
         <div className='PannelButtonArea'>
-          <button className='CommonButton'>
+          <button 
+            className='CommonButton'
+            onClick={handRefresh}>
                 Refresh
             </button>
 

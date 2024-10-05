@@ -1,4 +1,4 @@
-import { TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { useState } from "react";
 import { SudokuCell } from "../bean/SudokuCell";
 
@@ -21,8 +21,8 @@ function SudokuPanel(props: SudokuPanelProps) {
     }
 
     return (
-        <div className={props.className}>
-            <TableContainer>
+        <TableContainer className={props.className}>
+            <Table>
                 <TableBody>
                     {
                         props.array.map((row, rowIndex) => (
@@ -32,20 +32,20 @@ function SudokuPanel(props: SudokuPanelProps) {
                                         <TableCell
                                             className={item.modifiable ? "InputBox" : "NonInputBox"}
                                             key={`Cell - ${rowIndex} - ${itemIndex}`}>
-                                            {item.modifiable && 
+                                            {item.modifiable &&
                                                 <input
-                                                className="SudokuInput"
-                                                type="number"
-                                                value={item.value === 0 ? "" : item.value}
-                                                min={1}
-                                                max={9}
-                                                onInput={(e) => {
-                                                    const value = parseInt(e.currentTarget.value);
-                                                    if (value < 1 || value > 9) {
-                                                        e.currentTarget.value = item.value.toString();
-                                                    }
-                                                }}
-                                                onChange={(e) => handleInputChange(rowIndex, itemIndex, Number(e.target.value) || 0)} />
+                                                    className="SudokuInput"
+                                                    type="number"
+                                                    value={item.value === 0 ? "" : item.value}
+                                                    min={1}
+                                                    max={9}
+                                                    onInput={(e) => {
+                                                        const value = parseInt(e.currentTarget.value);
+                                                        if (value < 1 || value > 9) {
+                                                            e.currentTarget.value = item.value.toString();
+                                                        }
+                                                    }}
+                                                    onChange={(e) => handleInputChange(rowIndex, itemIndex, Number(e.target.value) || 0)} />
                                             }
 
                                             {
@@ -61,8 +61,8 @@ function SudokuPanel(props: SudokuPanelProps) {
                         ))
                     }
                 </TableBody>
-            </TableContainer>
-        </div>
+            </Table>
+        </TableContainer>
     );
 
 }
