@@ -1,9 +1,10 @@
 import { TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { useState } from "react";
+import { SudokuCell } from "../bean/SudokuCell";
 
 interface SudokuPanelProps {
     className?: string,
-    array: number[][],
+    array: SudokuCell[][],
     onCellChange: (row: number, col: number, value: number) => void,
 }
 
@@ -28,12 +29,13 @@ function SudokuPanel(props: SudokuPanelProps) {
                             <TableRow>
                                 {
                                     row.map((item, itemIndex) => (
-                                        <TableCell 
-                                            className="InputBox">                                            
-                                            <input
+                                        <TableCell
+                                            className={item.modifiable ? "InputBox" : "NonInputBox"}>
+                                            {item.modifiable && 
+                                                <input
                                                 className="SudokuInput"
                                                 type="number"
-                                                value={item === 0 ? "" : item}
+                                                value={item.value === 0 ? "" : item.value}
                                                 min={1}
                                                 max={9}
                                                 onInput={(e) => {
@@ -43,6 +45,14 @@ function SudokuPanel(props: SudokuPanelProps) {
                                                     }
                                                 }}
                                                 onChange={(e) => handleInputChange(rowIndex, itemIndex, Number(e.target.value) || 0)} />
+                                            }
+
+                                            {
+                                                !item.modifiable &&
+                                                <p className="SudokuFixedCell">
+                                                    {item.value}
+                                                </p>
+                                            }
                                         </TableCell>
                                     ))
                                 }

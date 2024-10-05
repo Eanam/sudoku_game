@@ -9,7 +9,10 @@ function App() {
     return Array.from({ length: 3 }, () =>
       Array.from({ length: 3 }, () =>
         Array.from({ length: 3 }, () =>
-          Array.from({ length: 3 }, () => Math.floor(Math.random() * 10))
+          Array.from({ length: 3 }, () => ({
+            modifiable: Math.random() < 0.5,
+            value: Math.floor(Math.random() * 10)
+          }))
         )
       )
     );
@@ -18,7 +21,7 @@ function App() {
   const handleCellChange = (rowIndex: number, colIndex: number, cellRowIndex: number, cellColIndex: number, newValue: number) => {
     setSudokuState(prevState => {
       const newState = [...prevState];
-      newState[rowIndex][colIndex][cellRowIndex][cellColIndex] = newValue;
+      newState[rowIndex][colIndex][cellRowIndex][cellColIndex].value = newValue;
       return newState;
     });
   }
