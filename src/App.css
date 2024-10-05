@@ -45,6 +45,14 @@
   border: 1px solid #000;
 }
 
+.PannelButtonArea {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  width: auto;
+  max-width: 100%;
+}
+
 .PannelItem {
   display: flex;
   justify-content: center;
@@ -85,6 +93,19 @@ input[type=number]::-webkit-outer-spin-button {
   height: 20px;
   margin: 0;
   color: white;
+  text-align: center;
+}
+
+.CommonButton {
+  background-color: green;
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+  border: none;
+  border-radius: 20px;
+  margin: 5px;
 }
 
 @keyframes App-logo-spin {

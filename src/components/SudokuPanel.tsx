@@ -26,11 +26,12 @@ function SudokuPanel(props: SudokuPanelProps) {
                 <TableBody>
                     {
                         props.array.map((row, rowIndex) => (
-                            <TableRow>
+                            <TableRow key={`Row - ${rowIndex}`}>
                                 {
                                     row.map((item, itemIndex) => (
                                         <TableCell
-                                            className={item.modifiable ? "InputBox" : "NonInputBox"}>
+                                            className={item.modifiable ? "InputBox" : "NonInputBox"}
+                                            key={`Cell - ${rowIndex} - ${itemIndex}`}>
                                             {item.modifiable && 
                                                 <input
                                                 className="SudokuInput"
@@ -41,7 +42,7 @@ function SudokuPanel(props: SudokuPanelProps) {
                                                 onInput={(e) => {
                                                     const value = parseInt(e.currentTarget.value);
                                                     if (value < 1 || value > 9) {
-                                                        e.currentTarget.value = item.toString();
+                                                        e.currentTarget.value = item.value.toString();
                                                     }
                                                 }}
                                                 onChange={(e) => handleInputChange(rowIndex, itemIndex, Number(e.target.value) || 0)} />

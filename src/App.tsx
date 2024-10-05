@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SudokuPanel from './components/SudokuPanel';
+import { Button } from '@mui/material';
 
 function App() {
 
@@ -9,10 +10,14 @@ function App() {
     return Array.from({ length: 3 }, () =>
       Array.from({ length: 3 }, () =>
         Array.from({ length: 3 }, () =>
-          Array.from({ length: 3 }, () => ({
-            modifiable: Math.random() < 0.5,
-            value: Math.floor(Math.random() * 10)
-          }))
+          Array.from({ length: 3 }, () => {
+            const modifiable = Math.random() < 0.5
+            const result = {
+              modifiable: modifiable,
+              value: modifiable ? 0 : Math.floor(Math.random() * 10)
+            }
+            return result
+          })
         )
       )
     );
@@ -42,6 +47,16 @@ function App() {
               ))
             ))
           }
+        </div>
+        <div style={{ marginTop: '20px' }}></div>
+        <div className='PannelButtonArea'>
+          <button className='CommonButton'>
+                Refresh
+            </button>
+
+            <button className='CommonButton'>
+                Check
+            </button>
         </div>
       </div>
     </div>
