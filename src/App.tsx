@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import SudokuPanel from './components/SudokuPanel';
 import { Button } from '@mui/material';
-import { createInitialSudokuData } from './utils/SudokuUtils';
+import { createInitialSudokuData, verifySudokuAnswer } from './utils/SudokuUtils';
 
 function App() {
 
@@ -21,6 +21,11 @@ function App() {
 
   const handRefresh = () => {
     setSudokuState(createInitialSudokuData())
+  }
+
+  const verifyAnswer = () => {
+    const result = verifySudokuAnswer(sudokuState)
+    console.log("verify result: ", result)
   }
 
   return (
@@ -48,7 +53,9 @@ function App() {
                 Refresh
             </button>
 
-            <button className='CommonButton'>
+            <button 
+              className='CommonButton'
+              onClick={verifyAnswer}>
                 Check
             </button>
         </div>
