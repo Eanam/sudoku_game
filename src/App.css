@@ -108,6 +108,24 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 5px;
 }
 
+.NavigationBarContainer {
+  background-color: greenyellow;
+}
+
+.NagationButtonUnselected {
+  font-size: 18px;
+  color: black;
+  padding: 3px;
+  letter-spacing: 2px;
+}
+
+.NagationButtonSelected {
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  padding: 3px;
+  letter-spacing: 2px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

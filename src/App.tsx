@@ -4,6 +4,7 @@ import './App.css';
 import SudokuPanel from './components/SudokuPanel';
 import { Button } from '@mui/material';
 import { createInitialSudokuData, verifySudokuAnswer } from './utils/SudokuUtils';
+import NavigationBar from './components/NavigationBar';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavigationBar />
       <div className='CenterBox'>
         <div className='PannelGrid'>
           {
